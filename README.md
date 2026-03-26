@@ -27,7 +27,7 @@ Follow these steps to set up the environment and run the house price predictor o
 Open your terminal and run the following command to download the project:
 
 Bash
-git clone https://github.com/DANIEL-DAVID-H/house-price-predictor.git
+git clone https://github.com/DanielDavid-H/house-price-predictor.git
 cd house-price-predictor
 
 2. Install Dependencies
