@@ -27,8 +27,9 @@ Follow these steps to set up the environment and run the house price predictor o
 Open your terminal and run the following command to download the project:
 
 Bash
-git clone https://github.com/your-username/house-price-predictor.git
+git clone https://github.com/DANIEL-DAVID-H/house-price-predictor.git
 cd house-price-predictor
+
 2. Install Dependencies
 This project requires NumPy for matrix mathematics and Matplotlib for visualizing the training loss.
 
@@ -41,6 +42,7 @@ Run the main script to start the training process.
 
 Bash
 python main.py
+
 4. Training & Prediction
 Step A: The model will train for 10,000 iterations using backpropagation.
 
