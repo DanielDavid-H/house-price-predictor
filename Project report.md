@@ -64,7 +64,7 @@ The input is a array of dimensions(8x2) and the output is a array of dimensions(
 
 | :---: | :---: |
 
-| ![Standard Loss](loss_without_adam.png) | ![Adaptive Loss](loss_with_adam.png)
+| ![Standard Loss](without_adam_optimiser.png) | ![Adaptive Loss](with_adam_optimiser.png)
 
 
 
