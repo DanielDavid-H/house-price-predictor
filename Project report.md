@@ -60,15 +60,11 @@ The input is a array of dimensions(8x2) and the output is a array of dimensions(
 
 
 
-| Standard SGD | Adaptive Learning Rate |
-
+| Standard SGD (Without Adam) | Custom Adam Optimizer |
 | :---: | :---: |
+| ![Standard Loss](without_adam_optimiser.png) | ![Adam Loss](with_adam_optimiser.png) |
 
-| ![Standard Loss](without_adam_optimiser.png) | ![Adaptive Loss](with_adam_optimiser.png)
-
-
-
-we can see that the optimiser helped the graph to converge musch faster and we can also see that is graph is overall smoother.
+> **Note:** The Adam optimizer (right) shows a much smoother convergence and reaches a lower loss value faster than the standard SGD (left).
 
 
 
