@@ -1,103 +1,61 @@
-\# **PROJECT REPORT**
+# 🏠 Project Report: House Price Prediction MLP
 
+## 1. Introduction
+This project demonstrates the power and robustness of **Multi-Layer Perceptrons (MLP)**. We implement a neural network from scratch using only **NumPy** to predict house prices. By using Stochastic Gradient Descent with a custom adaptive learning rate logic (Adam-inspired), we show that deep neural networks can be effective even with small datasets.
 
+---
 
-\# Introduction
+## 2. Concepts & Mathematics
 
+### Architecture
+The model uses:
+- **Input Layer:** 2 neurons (Square Feet, Bedrooms)
+- **Hidden Layers:** 2 layers with 8 neurons each
+- **Output Layer:** 1 neuron (Price)
 
+### Activation Function: Leaky ReLU
+We chose **Leaky ReLU** to prevent the "dying neuron" problem. Unlike standard ReLU, it allows a small gradient when the input is negative, ensuring all neurons stay active during backpropagation.
 
-This project aims to show the power and robustness of MLP(Multi Layer Perceptrons). We use a method called Stochastic Gradient descent with a custom Adam optimiser to predict the price of houses.
+**Formula:**
+$$f(x) = \begin{cases} x & \text{if } x > 0 \\ 0.01x & \text{if } x \leq 0 \end{cases}$$
 
-we also will like to show the robustness of deep neural networks by using a very small dataset and using numpy only.
+**Derivative:**
+$$f'(x) = \begin{cases} 1 & \text{if } x > 0 \\ 0.01 & \text{if } x \leq 0 \end{cases}$$
 
+---
 
+## 3. Working Principle
+The model operates on a normalized input array ($8 \times 2$). Weights and biases are initialized using **He Initialization** to prevent the vanishing gradient problem, ensuring the model isn't hypersensitive at the start of training.
 
-\# Concepts being used
+### Custom Adaptive Optimizer
+To escape local minima and find the global minimum, we implemented an adaptive learning rate:
+- **Increase:** If weight updates are negligible, the learning rate increases to push the model forward.
+- **Decrease:** If weights are "bouncing" (high volatility), the learning rate decays to stabilize convergence.
 
+---
 
+## 4. Key Observations & Results
+The model trained over **10,000 iterations**. The custom optimizer played a huge role in smoothing the loss curve and reaching a higher level of accuracy compared to standard SGD.
 
-For this project we use a input layer, 2 hidden layers and a output layer. We only the leaky relu function as the activation function as this is a regression problem, using leaky relu will help the model to converge way faster and unlike the regular relu function it doesn't let the neurons die permanently by giving them a very small value so they can wake up again.
+### Performance Comparison
 
-
-
-The formula for leaky relu is:
-
-&#x20;              
-
-&#x20;            f(x) = {x>0,x
-
-
-
-&#x20;                    x<0,0.01\*x}
-
-
-
-&#x20;            f'(x) = {x>0,1
-
-
-
-&#x20;                    x<0,0.01}
-
-
-
-Lastly we use a custom Adam optimiser to increase the learning rate if the weights are updated by a negligible amount and decrease the learning if the weights are bouncing all over the place
-
-
-
-\#Working principle
-
-
-
-The input is a array of dimensions(8x2) and the output is a array of dimensions(2x8) and the hidden layers have 8 neurons each. For the Adam optimiser to work we give each weights their own learning rates and a constant learning rate for the biases and the weights and biases are initialized using HE initialization to prevent the vanishing gradient problem. This will ensure that the model is not hyper sensitive. We define the weights and biases as numpy matrices. After we define the leaky relu function, we train the model over 10000 iterations. By using partial derivations we are able to find the magnitude and direction of the error of the layer and by using the chain rule we are able to pass on the error to the next layers. The custom Adam optimiser works by checking if the weights are being changed in a meaningful magnitude and adjusting the learning rate accordingly , thus helping the model escape a local minima and find the global minima. The model also shows the loss plot which consists of the loss every 1000 iterations. The model finally gets user input for square feet area and number of bedrooms and predicts the house price.
-
-
-
-\# Key observations
-
-
-
-* From this project we can see that how powerful a deep MLP is. we can see that even with a very small dataset we were able to predict house prices with extremely high levels of accuracy 
-
-&#x20;
-
-* The custom Adam optimiser also played a hude role in the converging of the graph. 
-
-&#x20;
-
-&#x20;   You can see the graphs below:
-
-
-
-| Standard SGD | Adaptive Learning Rate |
-
+| Standard SGD (No Adam) | Custom Adaptive Learning Rate |
 | :---: | :---: |
+| ![Standard Loss](loss_without_adam.png) | ![Adaptive Loss](loss_with_adam.png) |
 
-| !\[Standard Loss](loss\_without\_adam.png) | !\[Adaptive Loss](loss\_with\_adam.png)
+**Analysis:** The optimized graph converges much faster and remains significantly smoother throughout the training process.
 
+---
 
+## 5. Implementation Details
+- **He Initialization:** Prevents vanishing gradients, especially important when using Leaky ReLU.
+- **Data Normalization:** Features were scaled (Area / 2000, Bedrooms / 5) to keep input values within a range that prevents gradient explosion.
+- **Manual Backpropagation:** Used the Chain Rule and partial derivatives to propagate error from the output layer back through the hidden layers.
 
-we can see that the optimiser helped the graph to converge musch faster and we can also see that is graph is overall smoother.
+---
 
-
-
-\# Implementation details
-
-
-
-* Using of HE initialization to prevent the vanishing gradient problem which prevalent when we use leaky relu activation function .
-* normalization of data - divided area by 2000 and no. bedrooms by 5.
-
-
-
-\# Conclusion 
-
-&#x20;By this project we are able learn about deep MLPs and the math behind them and understanding how they work how work under the hood.
-
-
-
-
-
-&#x20;
+## 6. Conclusion
+This project provided deep insight into the "under the hood" mechanics of Deep MLPs. By building the math from scratch, I successfully modeled a non-linear regression problem and observed the critical importance of optimization algorithms in neural network training.
 
 
 
